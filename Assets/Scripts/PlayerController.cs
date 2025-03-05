@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{
+{   
+    [SerializeField] float speed = 10.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,22 +16,25 @@ public class PlayerController : MonoBehaviour
         //PlayerController(*)
     void Update()
     {
+        //월드좌표계, 로컬좌표계 구분해야함!!
+        //World -> Local
+        //transform.TransformDirection() //캐릭터가 바라보는 방향이 바뀌어도 원하는대로 동작한다.
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += new Vector3(0.0f, 0.0f, 1.0f);
+            transform.position += transform.TransformDirection(Vector3.forward * Time.deltaTime * speed);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += new Vector3(-1.0f, 0.0f, 0.0f);
+            transform.position += transform.TransformDirection(Vector3.left * Time.deltaTime * speed);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position += new Vector3(0.0f, 0.0f, -1.0f);
+            transform.position += transform.TransformDirection(Vector3.back * Time.deltaTime * speed);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += new Vector3(1.0f, 0.0f, 0.0f);
+            transform.position += transform.TransformDirection(Vector3.right * Time.deltaTime * speed);
         }
     }
 }
