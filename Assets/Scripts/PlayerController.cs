@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     {
         
     }
-
+    
     //GameObject(Player)
         //Transform
         //PlayerController(*)
@@ -21,20 +21,28 @@ public class PlayerController : MonoBehaviour
         //transform.TransformDirection() //캐릭터가 바라보는 방향이 바뀌어도 원하는대로 동작한다.
         if (Input.GetKey(KeyCode.W))
         {
+            //transform.rotation = Quaternion.LookRotation(Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.forward), 0.05f);
             transform.position += transform.TransformDirection(Vector3.forward * Time.deltaTime * speed);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += transform.TransformDirection(Vector3.left * Time.deltaTime * speed);
+            // transform.rotation = Quaternion.LookRotation(Vector3.left);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.left), 0.05f);
+            transform.position += transform.TransformDirection(Vector3.forward * Time.deltaTime * speed);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position += transform.TransformDirection(Vector3.back * Time.deltaTime * speed);
+            //transform.rotation = Quaternion.LookRotation(Vector3.back);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.back), 0.05f);
+            transform.position += transform.TransformDirection(Vector3.forward * Time.deltaTime * speed);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += transform.TransformDirection(Vector3.right * Time.deltaTime * speed);
+            //transform.rotation = Quaternion.LookRotation(Vector3.right);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Vector3.right), 0.05f);
+            transform.position += transform.TransformDirection(Vector3.forward * Time.deltaTime * speed);
         }
     }
 }
