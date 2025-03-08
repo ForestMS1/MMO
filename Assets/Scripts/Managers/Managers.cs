@@ -6,8 +6,12 @@ public class Managers : MonoBehaviour
 {
     static Managers s_instance; //유일성 보장 (전역 변수)
 
-    public static Managers Instance { get { Init(); return s_instance; } } //유일한 매니저를 갖고온다 (프로퍼티)
-
+    static Managers Instance { get { Init(); return s_instance; } } //유일한 매니저를 갖고온다 (프로퍼티)
+    
+    private InputManager _input = new InputManager();
+    private ResourceManager _resource = new ResourceManager();
+    public static InputManager Input { get { return Instance._input; } }
+    public static ResourceManager Resource { get {return Instance._resource; } }
     void Start()
     {
         Init();
@@ -15,7 +19,7 @@ public class Managers : MonoBehaviour
     
     void Update()
     {
-        
+        _input.OnUpdate();
     }
     
     //싱글톤 패턴으로 매니저는 한개만 존재

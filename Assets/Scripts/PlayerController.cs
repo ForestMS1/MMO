@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,13 +9,16 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Managers.Input.KeyAction -= OnKeyboard; //다른곳에서 구독했을수도있음. 중복방지
+        //인풋매니저 KeyAction에 OnKeyboard 구독신청
+        //인풋매니저한테. 어떤키가 눌리면. OnKeyboard 함수를 실행해라.
+        Managers.Input.KeyAction += OnKeyboard;
     }
     
     //GameObject(Player)
         //Transform
         //PlayerController(*)
-    void Update()
+    void OnKeyboard()
     {
         //월드좌표계, 로컬좌표계 구분해야함!!
         //World -> Local
