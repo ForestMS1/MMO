@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5599785351798190164, guid: 52bc7b870d77e457d8ab85460ef82cfe, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6766209455063971053, guid: 52bc7b870d77e457d8ab85460ef82cfe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -184,11 +188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7367205937735736142, guid: 52bc7b870d77e457d8ab85460ef82cfe, type: 3}
       propertyPath: m_IsKinematic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9185559621620899309, guid: 52bc7b870d77e457d8ab85460ef82cfe, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -304,7 +308,7 @@ GameObject:
   - component: {fileID: 891569267}
   - component: {fileID: 891569266}
   - component: {fileID: 891569265}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,6 +429,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -499,13 +504,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.25722355, y: -0.49140975, z: 0.1546048, w: 0.81758785}
-  m_LocalPosition: {x: 3.2418575, y: 3.7669868, z: -2.1784678}
+  m_LocalRotation: {x: 0.36923227, y: -0.023405708, z: 0.0093063675, w: 0.9289958}
+  m_LocalPosition: {x: 0, y: 6, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b31867c39415e4216b58aae0f1bf96b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mode: 0
+  _dir: {x: 0, y: 6, z: -5}
+  player: {fileID: 902308123}
 --- !u!1001 &3678030477083393676
 PrefabInstance:
   m_ObjectHideFlags: 0
