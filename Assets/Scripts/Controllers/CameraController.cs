@@ -16,8 +16,17 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position = player.transform.position + _dir;
-        transform.LookAt(player.transform.position);
+        RaycastHit hit;
+        if (Physics.Raycast(player.transform.position, _dir, out hit, _dir.magnitude,LayerMask.GetMask("Wall")))
+        {
+            float dist = (hit.point - player.transform.position).magnitude * 0.8f;
+            transform.position = player.transform.position + _dir.normalized * dist;
+        }
+        else
+        {
+            transform.position = player.transform.position + _dir;
+            transform.LookAt(player.transform.position);
+        }
     }
 
     public void SetQuaterView(Vector3 dir)

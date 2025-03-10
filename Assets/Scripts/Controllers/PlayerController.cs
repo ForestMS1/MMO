@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {   
-    [SerializeField] float speed = 10.0f;
+    [SerializeField] 
+    float speed = 10.0f;
 
 
-    private bool _moveToDest = false; // 마우스로 찍은곳 이동하냐
+    private bool _moveToDest = false; // 마우스로 찍은곳 이동?
     private Vector3 _destPos;
     
     void Start()
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         if (_moveToDest)
         {
             Vector3 dir = _destPos - transform.position;
+            Debug.Log($"dir : {dir}");
             if (dir.magnitude < 0.0001f)
             {
                 _moveToDest = false;
@@ -35,8 +37,9 @@ public class PlayerController : MonoBehaviour
             else
             {
                 float moveDist = Mathf.Clamp(speed * Time.deltaTime, 0, dir.magnitude);
-                transform.position = transform.position + dir.normalized * moveDist;
-                transform.LookAt(_destPos);
+                Debug.Log($"move Dist : {moveDist}");
+                transform.position += dir.normalized * moveDist;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), speed * Time.deltaTime);
             }
         }
     }
@@ -86,13 +89,14 @@ public class PlayerController : MonoBehaviour
         }
         
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1.0f);
+        Debug.DrawRay(ray.origin, ray.direction * 500.0f, Color.red, 1.0f);
         LayerMask mask = LayerMask.GetMask("Wall");
         
-        if (Physics.Raycast(ray, out RaycastHit hit, 100.0f, mask))
+        if (Physics.Raycast(ray, out RaycastHit hit, 500.0f, mask))
         {
-            _destPos = hit.point;
+            _destPos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
             _moveToDest = true;
+            Debug.Log($"_destPos : {_destPos}");
         }
     }
 }
