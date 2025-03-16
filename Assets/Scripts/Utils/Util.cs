@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Util
 {
+    public static GameObject FindChild(GameObject parent, string childName = null, bool recursive = false)
+    {
+        Transform transform = FindChild<Transform>(parent, childName, recursive);
+        if (transform == null)
+        {
+            return null;
+        }
+        return transform.gameObject;
+    }
+
     //parent, childName -> 찾고자 하는 자식이름, recursive -> 재귀적으로 계속 찾을것인지 여부
     public static T FindChild<T>(GameObject parent, string childName = null, bool recursive = false) where T : UnityEngine.Object
     {
@@ -12,7 +22,7 @@ public class Util
             return null;
         }
 
-        if (!recursive)
+        if (recursive == false)
         {
             for (int i = 0; i < parent.transform.childCount; i++)
             {

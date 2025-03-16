@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
        animator = GetComponent<Animator>();
+       //Managers.Resource.Instantiate("UI/UI_Button");
     }
     void Start()
     {
