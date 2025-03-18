@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
         
         //TEMP
         Managers.UI.ShowPopupUI<UI_Button>();
-        Managers.UI.ClosePopupUI();
     }
 
     void UpdateDie()

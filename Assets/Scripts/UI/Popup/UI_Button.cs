@@ -13,12 +13,17 @@ public class UI_Button : UI_Popup
     //C# Reflection
     void Start()
     {
+        Init();
+    }
+
+    public override void Init()
+    {
+        base.Init();
+        
         Bind<Button>(typeof(Buttons));
         Bind<TextMeshProUGUI>(typeof(Texts));
         Bind<GameObject>(typeof(GameObjects));
         Bind<Image>(typeof(Images));
-        
-
             
         GameObject bt = GetButton((int)Buttons.PointButton).gameObject;
         AddUIEvnet(bt, OnClickedButton, Define.UIEvnet.Click);
