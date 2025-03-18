@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UI_Base : MonoBehaviour
@@ -21,6 +22,11 @@ public class UI_Base : MonoBehaviour
     protected enum GameObjects
     {
         TestObject,
+    }
+
+    protected enum Images
+    {
+        ItemIcon,
     }
 
     protected void Bind<T>(Type type) where T : UnityEngine.Object
@@ -70,5 +76,25 @@ public class UI_Base : MonoBehaviour
     protected Image GetImage(int idx)
     {
         return Get<Image>(idx);
+    }
+
+    public static void AddUIEvnet(GameObject go, Action<PointerEventData> action, Define.UIEvnet type = Define.UIEvnet.Click)
+    {
+        UI_EventHandler evt = Util.getOrAddComponenet<UI_EventHandler>(go);
+
+        switch (type)
+        {
+            case Define.UIEvnet.Click:
+                evt.OnClickHandler -= action;
+                evt.OnClickHandler += action;
+                break;
+            case Define.UIEvnet.Drag:
+                evt.OnDragHandler -= action;
+                evt.OnDragHandler += action;
+                break;
+            
+        }
+        
+        evt.OnDragHandler += ((PointerEventData data) => { evt.gameObject.transform.position = data.position; });
     }
 }
