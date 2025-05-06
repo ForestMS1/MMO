@@ -27,7 +27,7 @@ public class UI_Inven_Item : UI_Base
         Get<GameObject>((int)GameObjects.ItemNameText).GetComponent<TextMeshProUGUI>().text = _name;
 
         GameObject go = Get<GameObject>((int)GameObjects.ItemIcon);
-        AddUIEvnet(go, (PointerEventData data) => { Debug.Log($"Item Click! {_name}");});
+        BindEvent(go, (PointerEventData data) => { Debug.Log($"Item Click! {_name}");});
     }
 
     public void SetInfo(string name)

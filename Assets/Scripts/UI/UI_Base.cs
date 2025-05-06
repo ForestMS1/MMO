@@ -66,6 +66,10 @@ public abstract class UI_Base : MonoBehaviour
         }
     }
 
+    protected GameObject GetGameObject(int idx)
+    {
+        return Get<GameObject>(idx);
+    }
     protected TextMeshProUGUI GetText(int idx)
     {
         return Get<TextMeshProUGUI>(idx);
@@ -81,7 +85,7 @@ public abstract class UI_Base : MonoBehaviour
         return Get<Image>(idx);
     }
 
-    public static void AddUIEvnet(GameObject go, Action<PointerEventData> action, Define.UIEvnet type = Define.UIEvnet.Click)
+    public static void BindEvent(GameObject go, Action<PointerEventData> action, Define.UIEvnet type = Define.UIEvnet.Click)
     {
         UI_EventHandler evt = Util.getOrAddComponenet<UI_EventHandler>(go);
 
